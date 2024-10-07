@@ -1283,7 +1283,12 @@ var Diagnostic = (function(){
 
     /**
      * Checks if remote notifications is available to the app.
-     * Returns true if remote notifications are switched on.
+     * This callback function is passed a single string parameter which indicates the authorization status.
+     * Possible values are:
+     * `cordova.plugins.diagnostic.permissionStatus.NOT_REQUESTED`
+     * `cordova.plugins.diagnostic.permissionStatus.DENIED_ONCE`
+     * `cordova.plugins.diagnostic.permissionStatus.DENIED_ALWAYS`
+     * `cordova.plugins.diagnostic.permissionStatus.GRANTED`
      *
      * @param {Function} successCallback -  The callback which will be called when the operation is successful.
      * This callback function is passed a single boolean parameter which is TRUE if remote notifications is available.
@@ -1297,6 +1302,23 @@ var Diagnostic = (function(){
             throw "Diagnostic Notifications module is not installed";
         }
     };
+
+    /**
+     * Checks if remote notifications is available to the app.
+     * Returns true if remote notifications are switched on.
+     *
+     * @param {Function} successCallback -  The callback which will be called when the operation is successful.
+     * This callback function is passed a single boolean parameter which is TRUE if remote notifications is available.
+     * @param {Function} errorCallback -  The callback which will be called when the operation encounters an error.
+     *  This callback function is passed a single string parameter containing the error message.
+     */
+        Diagnostic.getRemoteNotificationsAuthorizationStatus = function(successCallback, errorCallback) {
+            if(cordova.plugins.diagnostic.notifications){
+                cordova.plugins.diagnostic.notifications.getRemoteNotificationsAuthorizationStatus.apply(this, arguments);
+            }else{
+                throw "Diagnostic Notifications module is not installed";
+            }
+        };
 
     /**
      * Switches to the notification settings page in the Settings app
