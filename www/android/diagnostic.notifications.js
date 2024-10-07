@@ -69,6 +69,14 @@ var Diagnostic_Notifications = (function(){
             []);
     };
 
+    Diagnostic_Notifications.getRemoteNotificationsAuthorizationStatus = function(successCallback, errorCallback){
+        return cordova.exec(Diagnostic._ensureBoolean(successCallback),
+            errorCallback,
+            'Diagnostic_Notifications',
+            'getRemoteNotificationsAuthorizationStatus',
+            []);
+    };
+
     return Diagnostic_Notifications;
 });
 module.exports = new Diagnostic_Notifications();
