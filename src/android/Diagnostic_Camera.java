@@ -193,7 +193,7 @@ public class Diagnostic_Camera extends CordovaPlugin{
                 // Full access on Android 13 (API level 33) or higher
                 storageStatus = "GRANTED";
             } else if (
-                    Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE &&
+                    Build.VERSION.SDK_INT >= Build.VERSION.SDK_INT >= 34 && //fix issue with incompatible Android SDK version
                             getStatusForPermission(statuses, "READ_MEDIA_VISUAL_USER_SELECTED").equals("GRANTED")
             ) {
                 // Partial access on Android 14 (API level 34) or higher
