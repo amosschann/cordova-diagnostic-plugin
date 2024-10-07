@@ -155,7 +155,7 @@ public class Diagnostic_Notifications extends CordovaPlugin{
     public void getRemoteNotificationsAuthorizationStatus(JSONArray args, CallbackContext callbackContext) throws Exception{
         String[] permissions = {"POST_NOTIFICATIONS"};
         JSONObject statuses = Diagnostic.instance._getPermissionsAuthorizationStatus(permissions);
-        callbackContext.success(statuses);
+        callbackContext.success(getStatusForPermission(statuses, permissions));
     }
 
     /************
@@ -163,6 +163,8 @@ public class Diagnostic_Notifications extends CordovaPlugin{
      ***********/
 
 
-
+    private String getStatusForPermission(JSONObject statuses, String permissionName) throws JSONException {
+        return statuses.has(permissionName) ? statuses.getString(permissionName) : "DENIED";
+    }
 
 }
