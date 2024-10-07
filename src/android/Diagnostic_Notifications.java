@@ -115,6 +115,8 @@ public class Diagnostic_Notifications extends CordovaPlugin{
             } else if(action.equals("switchToNotificationSettings")) {
                 switchToNotificationSettings();
                 callbackContext.success();
+            } else if(action.equals("getNotificationAuthorizationStatus")) {
+                getNotificationAuthorizationStatus(args, callbackContext);
             } else {
                 diagnostic.handleError("Invalid action");
                 return false;
@@ -152,6 +154,12 @@ public class Diagnostic_Notifications extends CordovaPlugin{
     /************
      * Internals
      ***********/
+
+    private void getNotificationAuthorizationStatus(JSONArray args, CallbackContext callbackContext) throws Exception{
+        String[] permissions = 'POST_NOTIFICATIONS';
+        int requestId = Diagnostic.instance.storeContextByRequestId(callbackContext);
+        Diagnostic.instance._requestRuntimePermissions(Diagnostic.instance.stringArrayToJsonArray(permissions), requestId);
+    }
 
 
 }
