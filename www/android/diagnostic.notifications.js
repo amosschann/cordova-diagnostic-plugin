@@ -70,7 +70,7 @@ var Diagnostic_Notifications = (function(){
     };
 
     Diagnostic_Notifications.getRemoteNotificationsAuthorizationStatus = function(successCallback, errorCallback){
-        return cordova.exec(Diagnostic._ensureBoolean(successCallback),
+        return cordova.exec(successCallback,
             errorCallback,
             'Diagnostic_Notifications',
             'getRemoteNotificationsAuthorizationStatus',
